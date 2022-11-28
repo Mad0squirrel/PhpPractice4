@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 $name = $_POST["name"];
 $password = $_POST["password"];
 if (!isset($name) and !isset($password)) {
-    header("Location: http://localhost:8041/signin.html");
+    header("Location: http://localhost:8081/signin.html");
     exit();
 }
 $mysqli = connectToDB();
@@ -16,10 +16,10 @@ $result = $mysqli->query(/** @lang MySQL */ "SELECT role from users where name='
 if ($result->num_rows == 1) {
     $role = $result->fetch_row()[0];
     setcookie('auth', $role);
-    header("Location: http://localhost:8040/avaliableOptions.php");
+    header("Location: http://localhost:8080/avaliableOptions.php");
 } else {
     echo "Неправильные данные <br>";
-    echo "<a href='http://localhost:8041/signin.html'>Войти снова</.a>";
+    echo "<a href='http://localhost:8081/signin.html'>Войти снова</.a>";
 }
 $mysqli->close();
 exit();
